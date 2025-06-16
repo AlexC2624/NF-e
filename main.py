@@ -45,6 +45,7 @@ if not os.path.exists(config_json):
     },
     "geral": {
         "path_csv_entrada": "links.csv",
+        "estruturar_csv": "True",
         "chave_acesso_class": "chave",
         "csv_saida": "dados_nfe.csv",
         "pasta_dados": "dados",
