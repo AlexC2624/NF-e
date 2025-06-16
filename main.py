@@ -31,59 +31,6 @@ log.basicConfig(
 
 # --- Carregar Configurações do JSON ---
 config_json = 'config_selectors.json' # Caminho do arquivo de configuração
-if not os.path.exists(config_json):
-    log.info(f"Arquivo de configuração '{config_json}' não encontrado. Criando um novo arquivo com os valores padrão.")
-    with open(config_json, 'w', encoding='utf-8') as f:
-        f.write('''
-{
-    "metadata": {
-        "versao_config": "1.1",
-        "data_ultima_atualizacao": "2025-06-15",
-        "autor": "Alex",
-        "descricao": "Este arquivo contém as configurações de seletores HTML para o scraping de NFC-e do portal da Sefaz RS. Ajuste os valores dentro de 'emitente', 'totais', 'itens' e 'consumidor' se o layout da página da NFC-e mudar.",
-        "instrucoes_gerais": "Mantenha a 'versao_config' atualizada. Para habilitar requisições reais, defina 'debug.requisição_na_web' como 'True'. Certifique-se de que o arquivo CSV de entrada ('path_csv_entrada') esteja no local correto."
-    },
-    "geral": {
-        "path_csv_entrada": "links.csv",
-        "estruturar_csv": "True",
-        "chave_acesso_class": "chave",
-        "csv_saida": "dados_nfe.csv",
-        "pasta_dados": "dados",
-        "nome_inicial_html": "response_rs_",
-        "tempo_entre_requisicoes": 5,
-        "timeout_requisicao": 30
-    },
-    "debug": {
-        "requisição_na_web": "True",
-        "chave_para_requisição": "chave_acesso"
-    },
-    "emitente": {
-        "div_principal_class": "txtCenter",
-        "nome_emitente_id": "u20",
-        "cnpj_endereco_class": "text"
-    },
-    "totais": {
-        "div_principal_id": "totalNota",
-        "linha_total_id": "linhaTotal",
-        "valor_numb_class": "totalNumb"
-    },
-    "itens": {
-        "tabela_itens_id": "tabResult",
-        "linha_item_id_regex": "Item \\\\+ \\\\d+",
-        "nome_produto_class": "txtTit",
-        "qtd_class": "Rqtd",
-        "un_class": "RUN",
-        "vl_unit_class": "RvlUnit",
-        "vl_total_item_class": "valor"
-    },
-    "consumidor": {
-        "collapsible_div_data_role": "collapsible",
-        "collapsible_h4_text": "Consumidor",
-        "list_view_data_role": "listview"
-    }
-}
-    ''')
-
 try:
     with open(config_json, 'r', encoding='utf-8') as f:
         CONFIG = json.load(f)
